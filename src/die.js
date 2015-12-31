@@ -37,14 +37,19 @@
 		/**
 		 * Parses the dice notation string and returns an array of rolled
 		 * dice.
-		 * @param {string} string the dice notation string
+		 * @param {string} [string=d6] the dice notation string
 		 * @return {Dice[]} an array of rolled dice
 		 */
-		static parse(string) {
-			let result = /^([1-9][0-9]*)*d([1-9][0-9]*)$/.exec(string || 'd6');
+		static parse(string='d6') {
+			let result = /^([1-9][0-9]*)*d([1-9][0-9]*)$/.exec(string);
+
+			if (!result) {
+				throw 'Invalid dice notation';
+			}
+
 			var dice = [];
 
-			const size = result[1];
+			const size = result[1] || 1;
 			for (let i = 0; i < size; i++) {
 				let die = new Die(Number(result[2]));
 				die.roll();
