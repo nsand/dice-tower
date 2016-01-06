@@ -1,3 +1,5 @@
+'use strict';
+
 var tape = require('tape');
 var Die = require('../lib/die');
 
@@ -69,3 +71,16 @@ tape.test('should parse expressions of dice notation format', expect => {
   }
   expect.end();
 });
+
+tape.test('should throw an error if the format is invalid', expect => {
+  let result, error;
+  try {
+    result = Die.parse('XXXXXXXXXXXXXXX');
+  }
+  catch (e) {
+    error = e;
+  }
+  expect.equal(typeof result, 'undefined');
+  expect.ok(error instanceof Error);
+  expect.end();
+})

@@ -44,7 +44,7 @@
 			let result = /^([1-9][0-9]*)*d([1-9][0-9]*)$/.exec(string);
 
 			if (!result) {
-				throw 'Invalid dice notation';
+				throw new Error('Invalid dice notation');
 			}
 
 			var dice = [];
