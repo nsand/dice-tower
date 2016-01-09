@@ -40,7 +40,7 @@
 		 * @param {string} [string=d6] the dice notation string
 		 * @return {Dice[]} an array of rolled dice
 		 */
-		static parse(string='d6') {
+		static roll(string='d6') {
 			let result = /^([1-9][0-9]*)*d([1-9][0-9]*)$/.exec(string);
 
 			if (!result) {

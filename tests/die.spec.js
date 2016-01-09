@@ -34,9 +34,9 @@ tape.test('should always roll between 1 and the number of sides', expect => {
   expect.end();
 });
 
-tape.test('should have a parse function with a default operation', expect => {
-  expect.equal(typeof Die.parse, 'function');
-  var parsed = Die.parse();
+tape.test('should have a static roll function with a default operation', expect => {
+  expect.equal(typeof Die.roll, 'function');
+  var parsed = Die.roll();
   expect.ok(Array.isArray(parsed));
   expect.equal(parsed.length, 1);
   expect.equal(parsed[0].sides, 6);
@@ -45,8 +45,8 @@ tape.test('should have a parse function with a default operation', expect => {
 });
 
 tape.test('should parse expressions, defaulting to one die', expect => {
-  expect.equal(typeof Die.parse, 'function');
-  var parsed = Die.parse('d20');
+  expect.equal(typeof Die.roll, 'function');
+  var parsed = Die.roll('d20');
   expect.ok(Array.isArray(parsed));
   expect.equal(parsed.length, 1);
   expect.equal(parsed[0].sides, 20);
@@ -54,8 +54,8 @@ tape.test('should parse expressions, defaulting to one die', expect => {
 });
 
 tape.test('should parse expressions of dice notation format', expect => {
-  expect.equal(typeof Die.parse, 'function');
-  var parsed = Die.parse('5d20');
+  expect.equal(typeof Die.roll, 'function');
+  var parsed = Die.roll('5d20');
   expect.ok(Array.isArray(parsed));
   expect.equal(parsed.length, 5);
   var wrongSides = parsed.some(die => {
@@ -75,7 +75,7 @@ tape.test('should parse expressions of dice notation format', expect => {
 tape.test('should throw an error if the format is invalid', expect => {
   let result, error;
   try {
-    result = Die.parse('XXXXXXXXXXXXXXX');
+    result = Die.roll('XXXXXXXXXXXXXXX');
   }
   catch (e) {
     error = e;
