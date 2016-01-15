@@ -50,8 +50,10 @@
 			var dice = [];
 
 			const size = result[1] || 1;
+			const sides = Number(result[2]);
+
 			for (let i = 0; i < size; i++) {
-				let die = new Die(Number(result[2]));
+				let die = new Die(sides);
 				die.roll();
 				dice.push(die);
 			}
